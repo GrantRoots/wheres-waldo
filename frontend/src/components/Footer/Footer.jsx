@@ -19,15 +19,18 @@ function Footer() {
     }
   }, [gameStarted]);
 
+  function showRules() {}
+
   return (
     <>
       <footer className={styles.footer}>
-        <div>Time: {time} Seconds</div>
+        <div className={styles.time}>Time: {time} Seconds</div>
         {!gameStarted && (
           <button onClick={startGame} className={styles.button}>
             Start
           </button>
         )}
+        {gameStarted && <div>Score:</div>}
         <button className={styles.rules}>Rules</button>
       </footer>
     </>

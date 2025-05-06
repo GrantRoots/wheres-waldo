@@ -6,7 +6,7 @@
   height: 20vh;
 }
 
-footer > div {
+.time {
   position: absolute;
   left: 3rem;
 }

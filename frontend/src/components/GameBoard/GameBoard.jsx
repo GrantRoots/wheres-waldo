@@ -4,25 +4,35 @@ import wizard from "../../assets/wizard.png";
 import wilma from "../../assets/wilma.png";
 import odlaw from "../../assets/odlaw.png";
 import woof from "../../assets/woof.png";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { GameContext } from "../../App";
 import styles from "./GameBoard.module.css";
 
 function GameBoard() {
   const { gameStarted } = useContext(GameContext);
+  const [clicked, setClicked] = useState(false);
+  const [x, setX] = useState(null);
+  const [y, setY] = useState(null);
 
   function handleClick(e) {
-    const x = e.clientX;
-    const y = e.clientY;
-    //make box around click
-    //allow like 10 px gap of error
-    console.log("Click coordinates:", x, y);
+    clicked ? null : setClicked(true);
+    setX(e.clientX);
+    setY(e.clientY);
+    checkCoordinates;
+  }
+
+  function checkCoordinates() {
+    //check
+    //add score if right
   }
 
   return (
     <>
       {gameStarted && (
         <main onClick={handleClick}>
+          {clicked && (
+            <div className={styles.checkBox} style={{ left: x, top: y }}></div>
+          )}
           <div className={styles.container}>
             <img
               className={styles.background}
