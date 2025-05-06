@@ -21,5 +21,4 @@ model Positions {
   wilma Int
   odlaw Int
   woof Int
-  wenda Int
 }

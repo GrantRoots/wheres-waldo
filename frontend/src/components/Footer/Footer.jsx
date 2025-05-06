@@ -4,12 +4,11 @@ import { useContext } from "react";
 import { GameContext } from "../../App";
 
 function Footer() {
-  const [time, setTime] = useState(null);
+  const [time, setTime] = useState(0);
   const { gameStarted, setGameStarted } = useContext(GameContext);
 
   function startGame() {
     setGameStarted(true);
-    startTimer();
   }
 
   useEffect(() => {
@@ -20,17 +19,16 @@ function Footer() {
     }
   }, [gameStarted]);
 
-  function startTimer() {}
-
   return (
     <>
       <footer className={styles.footer}>
-        <div>Time: {time}</div>
+        <div>Time: {time} Seconds</div>
         {!gameStarted && (
           <button onClick={startGame} className={styles.button}>
             Start
           </button>
         )}
+        <button className={styles.rules}>Rules</button>
       </footer>
     </>
   );

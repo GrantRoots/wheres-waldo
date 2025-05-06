@@ -8,7 +8,11 @@ function Header() {
   return (
     <>
       {!gameStarted && (
-        <header className={styles.header}>Welcome To Where’s Waldo!</header>
+        <header className={styles.header}>
+          <h1>Welcome To Where’s Waldo!</h1>
+          <h2>Click Start To Begin</h2>
+          <img src="" alt="Waldo Head" />
+        </header>
       )}
     </>
   );

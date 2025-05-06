@@ -11,6 +11,11 @@ footer > div {
   left: 3rem;
 }
 
+.rules {
+  position: absolute;
+  right: 3rem;
+}
+
 .button {
   font-size: 2rem;
 }
