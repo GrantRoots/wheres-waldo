@@ -1,0 +1,16 @@
+.footer {
+  display: flex;
+  background-color: red;
+  justify-content: center;
+  align-items: center;
+  height: 20vh;
+}
+
+footer > div {
+  position: absolute;
+  left: 3rem;
+}
+
+.button {
+  font-size: 2rem;
+}
