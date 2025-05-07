@@ -1,4 +1,6 @@
-async function checkCoords(req, res, next) {
+const db = require("../queries/coords");
+
+async function checkSubmit(req, res, next) {
   try {
     const coords = await db.getCoords();
     const x = req.body.clicked.x;
@@ -50,10 +52,6 @@ async function checkCoords(req, res, next) {
   }
 }
 
-async function postCoords(req, res, next) {
-  try {
-    await db.post(req.body.coords);
-  } catch (error) {
-    next(error);
-  }
-}
+module.exports = {
+  checkSubmit,
+};

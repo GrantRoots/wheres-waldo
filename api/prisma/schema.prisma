@@ -14,7 +14,6 @@ model Records {
   time DateTime
 }
 
-//I WOULD NEED TO STORE THE COORDINATED EVERY NEW GAME
 model Positions {
   id Int @id @default(autoincrement())
   waldo Json
