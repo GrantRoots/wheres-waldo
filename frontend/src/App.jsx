@@ -8,10 +8,42 @@ export const GameContext = createContext();
 
 function App() {
   const [gameStarted, setGameStarted] = useState(false);
+  const [notFoundMessage, setNotFoundMessage] = useState(null);
+  const [x, setX] = useState(null);
+  const [y, setY] = useState(null);
+  const [found, setFound] = useState([]);
+  const [waldoCheck, setWaldoCheck] = useState(false);
+  const [wizardCheck, setWizardCheck] = useState(false);
+  const [wilmaCheck, setWilmaCheck] = useState(false);
+  const [odlawCheck, setOdlawCheck] = useState(false);
+  const [woofCheck, setWoofCheck] = useState(false);
 
   return (
     <>
-      <GameContext.Provider value={{ gameStarted, setGameStarted }}>
+      <GameContext.Provider
+        value={{
+          gameStarted,
+          setGameStarted,
+          notFoundMessage,
+          setNotFoundMessage,
+          x,
+          setX,
+          y,
+          setY,
+          found,
+          setFound,
+          waldoCheck,
+          setWaldoCheck,
+          wizardCheck,
+          setWizardCheck,
+          wilmaCheck,
+          setWilmaCheck,
+          odlawCheck,
+          setOdlawCheck,
+          woofCheck,
+          setWoofCheck,
+        }}
+      >
         <Header />
         <GameBoard />
         <Footer />

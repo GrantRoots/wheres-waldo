@@ -1,29 +1,102 @@
 import background from "../../assets/background.jpeg";
-import waldo from "../../assets/waldo.webp";
-import wizard from "../../assets/wizard.png";
-import wilma from "../../assets/wilma.png";
-import odlaw from "../../assets/odlaw.png";
-import woof from "../../assets/woof.png";
-import { useContext, useState } from "react";
+import waldoImg from "../../assets/waldo.webp";
+import wizardImg from "../../assets/wizard.png";
+import wilmaImg from "../../assets/wilma.png";
+import odlawImg from "../../assets/odlaw.png";
+import woofImg from "../../assets/woof.png";
+import checkmark from "../../assets/checkmark.png";
+import { useContext, useState, useRef, useEffect } from "react";
 import { GameContext } from "../../App";
 import styles from "./GameBoard.module.css";
 
 function GameBoard() {
-  const { gameStarted } = useContext(GameContext);
-  const [clicked, setClicked] = useState(false);
-  const [x, setX] = useState(null);
-  const [y, setY] = useState(null);
+  const {
+    gameStarted,
+    setNotFoundMessage,
+    setX,
+    setY,
+    waldoCheck,
+    wizardCheck,
+    wilmaCheck,
+    odlawCheck,
+    woofCheck,
+    x,
+    y,
+  } = useContext(GameContext);
 
-  function handleClick(e) {
-    clicked ? null : setClicked(true);
-    setX(e.clientX);
-    setY(e.clientY);
-    checkCoordinates;
+  const [clicked, setClicked] = useState(false);
+
+  const waldoRef = useRef(null);
+  const wizardRef = useRef(null);
+  const wilmaRef = useRef(null);
+  const odlawRef = useRef(null);
+  const woofRef = useRef(null);
+
+  useEffect(() => {
+    if (gameStarted) getAndPostCoordinates();
+  }, [gameStarted]);
+
+  async function getAndPostCoordinates() {
+    const waldoRect = waldoRef.current.getBoundingClientRect();
+    const wizardRect = wizardRef.current.getBoundingClientRect();
+    const wilmaRect = wilmaRef.current.getBoundingClientRect();
+    const odlawRect = odlawRef.current.getBoundingClientRect();
+    const woofRect = woofRef.current.getBoundingClientRect();
+
+    const coords = {
+      waldo: {
+        top: waldoRect.top,
+        bottom: waldoRect.bottom,
+        left: waldoRect.left,
+        right: waldoRect.right,
+      },
+      wizard: {
+        top: wizardRect.top,
+        bottom: wizardRect.bottom,
+        left: wizardRect.left,
+        right: wizardRect.right,
+      },
+      wilma: {
+        top: wilmaRect.top,
+        bottom: wilmaRect.bottom,
+        left: wilmaRect.left,
+        right: wilmaRect.right,
+      },
+      odlaw: {
+        top: odlawRect.top,
+        bottom: odlawRect.bottom,
+        left: odlawRect.left,
+        right: odlawRect.right,
+      },
+      woof: {
+        top: woofRect.top,
+        bottom: woofRect.bottom,
+        left: woofRect.left,
+        right: woofRect.right,
+      },
+    };
+
+    try {
+      const response = await fetch("http://localhost:3000/coords", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(coords),
+      });
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+    } catch (error) {
+      console.error("Network or server error:", error);
+    }
   }
 
-  function checkCoordinates() {
-    //check
-    //add score if right
+  function handleClick(e) {
+    if (!clicked) setClicked(true);
+    setNotFoundMessage(null);
+    setX(e.clientX);
+    setY(e.clientY);
   }
 
   return (
@@ -39,11 +112,51 @@ function GameBoard() {
               src={background}
               alt="Wheres waldo background"
             />
-            <img className={styles.waldo} src={waldo} alt="Waldo" />
-            <img className={styles.wizard} src={wizard} alt="Wizard" />
-            <img className={styles.wilma} src={wilma} alt="Wilma" />
-            <img className={styles.odlaw} src={odlaw} alt="Odlaw" />
-            <img className={styles.woof} src={woof} alt="Woof" />
+            <img
+              ref={waldoRef}
+              className={styles.waldo}
+              src={waldoImg}
+              alt="Waldo"
+            />
+            {waldoCheck && (
+              <img className={styles.waldo} src={checkmark} alt="Checkmark" />
+            )}
+            <img
+              ref={wizardRef}
+              className={styles.wizard}
+              src={wizardImg}
+              alt="Wizard"
+            />
+            {wizardCheck && (
+              <img className={styles.wizard} src={checkmark} alt="Checkmark" />
+            )}
+            <img
+              ref={wilmaRef}
+              className={styles.wilma}
+              src={wilmaImg}
+              alt="Wilma"
+            />
+            {wilmaCheck && (
+              <img className={styles.wilma} src={checkmark} alt="Checkmark" />
+            )}
+            <img
+              ref={odlawRef}
+              className={styles.odlaw}
+              src={odlawImg}
+              alt="Odlaw"
+            />
+            {odlawCheck && (
+              <img className={styles.odlaw} src={checkmark} alt="Checkmark" />
+            )}
+            <img
+              ref={woofRef}
+              className={styles.woof}
+              src={woofImg}
+              alt="Woof"
+            />
+            {woofCheck && (
+              <img className={styles.woof} src={checkmark} alt="Checkmark" />
+            )}
           </div>
         </main>
       )}

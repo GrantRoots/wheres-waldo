@@ -14,11 +14,12 @@ model Records {
   time DateTime
 }
 
+//I WOULD NEED TO STORE THE COORDINATED EVERY NEW GAME
 model Positions {
   id Int @id @default(autoincrement())
-  waldo Int
-  wizard Int
-  wilma Int
-  odlaw Int
-  woof Int
+  waldo Json
+  wizard Json
+  wilma Json
+  odlaw Json
+  woof Json
 }

@@ -19,3 +19,8 @@
 .button {
   font-size: 2rem;
 }
+
+.notFound {
+  position: absolute;
+  bottom: 13%;
+}
