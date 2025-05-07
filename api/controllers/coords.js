@@ -2,51 +2,52 @@ const db = require("../queries/coords");
 
 async function checkSubmit(req, res, next) {
   try {
-    const coords = await db.getCoords();
-    const x = req.body.clicked.x;
-    const y = req.body.clicked.y;
+    let coords = await db.getCoords();
+    coords = coords[0];
+    const x = req.body.x;
+    const y = req.body.y;
 
     if (
       x > coords.waldo.left &&
       x < coords.waldo.right &&
-      y < coords.waldo.top &&
-      y > coords.waldo.bottom
+      y > coords.waldo.top &&
+      y < coords.waldo.bottom
     ) {
-      return "waldo";
+      return res.json("waldo");
     }
     if (
       x > coords.wizard.left &&
       x < coords.wizard.right &&
-      y < coords.wizard.top &&
-      y > coords.wizard.bottom
+      y > coords.wizard.top &&
+      y < coords.wizard.bottom
     ) {
-      return "wizard";
+      return res.json("wizard");
     }
     if (
       x > coords.wilma.left &&
       x < coords.wilma.right &&
-      y < coords.wilma.top &&
-      y > coords.wilma.bottom
+      y > coords.wilma.top &&
+      y < coords.wilma.bottom
     ) {
-      return "wilma";
+      return res.json("wilma");
     }
     if (
       x > coords.odlaw.left &&
       x < coords.odlaw.right &&
-      y < coords.odlaw.top &&
-      y > coords.odlaw.bottom
+      y > coords.odlaw.top &&
+      y < coords.odlaw.bottom
     ) {
-      return "odlaw";
+      return res.json("odlaw");
     }
     if (
       x > coords.woof.left &&
       x < coords.woof.right &&
-      y < coords.woof.top &&
-      y > coords.woof.bottom
+      y > coords.woof.top &&
+      y < coords.woof.bottom
     ) {
-      return "woof";
+      return res.json("woof");
     }
-    return false;
+    return res.json(false);
   } catch (error) {
     next(error);
   }

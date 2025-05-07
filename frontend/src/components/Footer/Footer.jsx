@@ -35,7 +35,7 @@ function Footer() {
 
   // function showRules() {}
 
-  async function checkCoords() {
+  async function checkSubmit() {
     const coords = {
       x: x,
       y: y,
@@ -51,16 +51,15 @@ function Footer() {
       });
 
       const data = await response.json();
-      console.log(data.found, "footer.jsx line 53");
       if (data === false) {
         setNotFoundMessage("Sorry thats not a the right character :(");
         return;
       }
-      if (found.includes(data.found)) {
+      if (found.includes(data)) {
         setNotFoundMessage("Character has already been found.");
         return;
       } else {
-        switch (data.found) {
+        switch (data) {
           case "waldo":
             setWaldoCheck(true);
             break;
@@ -77,7 +76,11 @@ function Footer() {
             setWoofCheck(true);
             break;
         }
-        setFound([...found, data.found]);
+        setFound([...found, data]);
+        setNotFoundMessage("Correct, Nice Job!");
+        if (found.length + 1 === 5) {
+          //game over get the time and ask them for their name
+        }
       }
     } catch (error) {
       console.error("Network or server error:", error);
@@ -93,7 +96,7 @@ function Footer() {
             Start
           </button>
         )}
-        {gameStarted && <button onClick={checkCoords}>Submit</button>}
+        {gameStarted && <button onClick={checkSubmit}>Submit</button>}
         <div className={styles.notFound}>{notFoundMessage}</div>
         <button className={styles.rules}>Rules</button>
       </footer>
