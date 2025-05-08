@@ -1,3 +1,4 @@
+const { body, validationResult } = require("express-validator");
 const db = require("../queries/check");
 
 async function checkSubmit(req, res, next) {
@@ -53,14 +54,26 @@ async function checkSubmit(req, res, next) {
   }
 }
 
-async function postWin(req, res, next) {
-  try {
-    await db.postWinner(req.body.name, req.body.time);
-    res.json(true);
-  } catch (error) {
-    next(error);
-  }
-}
+const validateName = [body("name").trim().notEmpty()];
+
+const postWin = [
+  validateName,
+  async (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      console.error(errors);
+      return res
+        .status(400)
+        .json({ error: "Name Invalid", details: errors.array() });
+    }
+    try {
+      await db.postWinner(req.body.name, req.body.time);
+      res.json(true);
+    } catch (error) {
+      next(error);
+    }
+  },
+];
 
 module.exports = {
   checkSubmit,
