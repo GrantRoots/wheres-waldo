@@ -1,10 +1,9 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import styles from "./Footer.module.css";
 import { useContext } from "react";
 import { GameContext } from "../../App";
 
 function Footer() {
-  const [time, setTime] = useState(0);
   const {
     gameStarted,
     setGameStarted,
@@ -19,6 +18,9 @@ function Footer() {
     setWilmaCheck,
     setOdlawCheck,
     setWoofCheck,
+    setWinner,
+    time,
+    setTime,
   } = useContext(GameContext);
 
   function startGame() {
@@ -42,7 +44,7 @@ function Footer() {
     };
 
     try {
-      const response = await fetch("http://localhost:3000/coords", {
+      const response = await fetch("http://localhost:3000/check", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -80,6 +82,7 @@ function Footer() {
         setNotFoundMessage("Correct, Nice Job!");
         if (found.length + 1 === 5) {
           //game over get the time and ask them for their name
+          setWinner(true);
         }
       }
     } catch (error) {

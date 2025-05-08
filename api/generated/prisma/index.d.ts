@@ -974,22 +974,24 @@ export namespace Prisma {
 
   export type RecordsAvgAggregateOutputType = {
     id: number | null
+    time: number | null
   }
 
   export type RecordsSumAggregateOutputType = {
     id: number | null
+    time: number | null
   }
 
   export type RecordsMinAggregateOutputType = {
     id: number | null
     name: string | null
-    time: Date | null
+    time: number | null
   }
 
   export type RecordsMaxAggregateOutputType = {
     id: number | null
     name: string | null
-    time: Date | null
+    time: number | null
   }
 
   export type RecordsCountAggregateOutputType = {
@@ -1002,10 +1004,12 @@ export namespace Prisma {
 
   export type RecordsAvgAggregateInputType = {
     id?: true
+    time?: true
   }
 
   export type RecordsSumAggregateInputType = {
     id?: true
+    time?: true
   }
 
   export type RecordsMinAggregateInputType = {
@@ -1116,7 +1120,7 @@ export namespace Prisma {
   export type RecordsGroupByOutputType = {
     id: number
     name: string
-    time: Date
+    time: number
     _count: RecordsCountAggregateOutputType | null
     _avg: RecordsAvgAggregateOutputType | null
     _sum: RecordsSumAggregateOutputType | null
@@ -1170,7 +1174,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       name: string
-      time: Date
+      time: number
     }, ExtArgs["result"]["records"]>
     composites: {}
   }
@@ -1596,7 +1600,7 @@ export namespace Prisma {
   interface RecordsFieldRefs {
     readonly id: FieldRef<"Records", 'Int'>
     readonly name: FieldRef<"Records", 'String'>
-    readonly time: FieldRef<"Records", 'DateTime'>
+    readonly time: FieldRef<"Records", 'Int'>
   }
     
 
@@ -3086,20 +3090,6 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'DateTime'
-   */
-  export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
-    
-
-
-  /**
-   * Reference to a field of type 'DateTime[]'
-   */
-  export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
-    
-
-
-  /**
    * Reference to a field of type 'Json'
    */
   export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
@@ -3136,7 +3126,7 @@ export namespace Prisma {
     NOT?: RecordsWhereInput | RecordsWhereInput[]
     id?: IntFilter<"Records"> | number
     name?: StringFilter<"Records"> | string
-    time?: DateTimeFilter<"Records"> | Date | string
+    time?: IntFilter<"Records"> | number
   }
 
   export type RecordsOrderByWithRelationInput = {
@@ -3151,7 +3141,7 @@ export namespace Prisma {
     OR?: RecordsWhereInput[]
     NOT?: RecordsWhereInput | RecordsWhereInput[]
     name?: StringFilter<"Records"> | string
-    time?: DateTimeFilter<"Records"> | Date | string
+    time?: IntFilter<"Records"> | number
   }, "id">
 
   export type RecordsOrderByWithAggregationInput = {
@@ -3171,7 +3161,7 @@ export namespace Prisma {
     NOT?: RecordsScalarWhereWithAggregatesInput | RecordsScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Records"> | number
     name?: StringWithAggregatesFilter<"Records"> | string
-    time?: DateTimeWithAggregatesFilter<"Records"> | Date | string
+    time?: IntWithAggregatesFilter<"Records"> | number
   }
 
   export type PositionsWhereInput = {
@@ -3235,41 +3225,41 @@ export namespace Prisma {
 
   export type RecordsCreateInput = {
     name: string
-    time: Date | string
+    time: number
   }
 
   export type RecordsUncheckedCreateInput = {
     id?: number
     name: string
-    time: Date | string
+    time: number
   }
 
   export type RecordsUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
-    time?: DateTimeFieldUpdateOperationsInput | Date | string
+    time?: IntFieldUpdateOperationsInput | number
   }
 
   export type RecordsUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
-    time?: DateTimeFieldUpdateOperationsInput | Date | string
+    time?: IntFieldUpdateOperationsInput | number
   }
 
   export type RecordsCreateManyInput = {
     id?: number
     name: string
-    time: Date | string
+    time: number
   }
 
   export type RecordsUpdateManyMutationInput = {
     name?: StringFieldUpdateOperationsInput | string
-    time?: DateTimeFieldUpdateOperationsInput | Date | string
+    time?: IntFieldUpdateOperationsInput | number
   }
 
   export type RecordsUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
-    time?: DateTimeFieldUpdateOperationsInput | Date | string
+    time?: IntFieldUpdateOperationsInput | number
   }
 
   export type PositionsCreateInput = {
@@ -3358,17 +3348,6 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
-  export type DateTimeFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
-  }
-
   export type RecordsCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
@@ -3377,6 +3356,7 @@ export namespace Prisma {
 
   export type RecordsAvgOrderByAggregateInput = {
     id?: SortOrder
+    time?: SortOrder
   }
 
   export type RecordsMaxOrderByAggregateInput = {
@@ -3393,6 +3373,7 @@ export namespace Prisma {
 
   export type RecordsSumOrderByAggregateInput = {
     id?: SortOrder
+    time?: SortOrder
   }
 
   export type IntWithAggregatesFilter<$PrismaModel = never> = {
@@ -3427,20 +3408,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
     _max?: NestedStringFilter<$PrismaModel>
-  }
-
-  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
   }
   export type JsonFilter<$PrismaModel = never> =
     | PatchUndefined<
@@ -3521,10 +3488,6 @@ export namespace Prisma {
     set?: string
   }
 
-  export type DateTimeFieldUpdateOperationsInput = {
-    set?: Date | string
-  }
-
   export type IntFieldUpdateOperationsInput = {
     set?: number
     increment?: number
@@ -3556,17 +3519,6 @@ export namespace Prisma {
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     not?: NestedStringFilter<$PrismaModel> | string
-  }
-
-  export type NestedDateTimeFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
@@ -3611,20 +3563,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
     _max?: NestedStringFilter<$PrismaModel>
-  }
-
-  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
   }
   export type NestedJsonFilter<$PrismaModel = never> =
     | PatchUndefined<

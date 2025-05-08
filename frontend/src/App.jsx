@@ -17,6 +17,8 @@ function App() {
   const [wilmaCheck, setWilmaCheck] = useState(false);
   const [odlawCheck, setOdlawCheck] = useState(false);
   const [woofCheck, setWoofCheck] = useState(false);
+  const [winner, setWinner] = useState(false);
+  const [time, setTime] = useState(0);
 
   return (
     <>
@@ -42,6 +44,10 @@ function App() {
           setOdlawCheck,
           woofCheck,
           setWoofCheck,
+          winner,
+          setWinner,
+          time,
+          setTime,
         }}
       >
         <Header />

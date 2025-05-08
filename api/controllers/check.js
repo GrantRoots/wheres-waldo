@@ -1,4 +1,4 @@
-const db = require("../queries/coords");
+const db = require("../queries/check");
 
 async function checkSubmit(req, res, next) {
   try {
@@ -53,6 +53,16 @@ async function checkSubmit(req, res, next) {
   }
 }
 
+async function postWin(req, res, next) {
+  try {
+    await db.postWinner(req.body.name, req.body.time);
+    res.json(true);
+  } catch (error) {
+    next(error);
+  }
+}
+
 module.exports = {
   checkSubmit,
+  postWin,
 };

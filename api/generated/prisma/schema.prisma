@@ -9,9 +9,9 @@ datasource db {
 }
 
 model Records {
-  id   Int      @id @default(autoincrement())
+  id   Int    @id @default(autoincrement())
   name String
-  time DateTime
+  time Int
 }
 
 model Positions {

@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 
-const coordsRouter = require("./routes/coords");
+const checkRouter = require("./routes/check");
 const indexRouter = require("./routes/index");
 
 const app = express();
@@ -12,7 +12,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use("/", indexRouter);
-app.use("/coords", coordsRouter);
+app.use("/check", checkRouter);
 
 app.use((err, req, res, next) => {
   console.error(err);

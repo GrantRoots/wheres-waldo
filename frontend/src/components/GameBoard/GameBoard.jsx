@@ -22,9 +22,12 @@ function GameBoard() {
     woofCheck,
     x,
     y,
+    winner,
+    time,
   } = useContext(GameContext);
 
   const [clicked, setClicked] = useState(false);
+  const [submittedWin, setSubmittedWin] = useState(false);
 
   const waldoRef = useRef(null);
   const wizardRef = useRef(null);
@@ -99,6 +102,29 @@ function GameBoard() {
     setY(e.clientY);
   }
 
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    const formData = new FormData(e.target);
+    const data = Object.fromEntries(formData.entries());
+
+    try {
+      const response = await fetch("http://localhost:3000/check/win", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+      const successfulSubmit = await response.json();
+      if (successfulSubmit) {
+        setSubmittedWin(true);
+      }
+    } catch (err) {
+      console.error("Network or server error:", err);
+    }
+  }
+
   return (
     <>
       {gameStarted && (
@@ -158,6 +184,22 @@ function GameBoard() {
               <img className={styles.woof} src={checkmark} alt="Checkmark" />
             )}
           </div>
+          {winner && (
+            <div className={styles.form}>
+              {!submittedWin && (
+                <div>
+                  <h1>Congratulations You Won!!!</h1>
+                  <form onSubmit={handleSubmit}>
+                    <label htmlFor="name">Your Name: </label>
+                    <input type="text" name="name" />
+                    <input type="hidden" name="time" value={time} />
+                    <button type="submit">Submit Your Time!</button>
+                  </form>
+                </div>
+              )}
+              {submittedWin && <h1>Thank you your time has been submitted!</h1>}
+            </div>
+          )}
         </main>
       )}
     </>
