@@ -96,10 +96,12 @@ function GameBoard() {
   }
 
   function handleClick(e) {
-    if (!clicked) setClicked(true);
-    setNotFoundMessage(null);
-    setX(e.clientX);
-    setY(e.clientY);
+    if (!winner) {
+      if (!clicked) setClicked(true);
+      setNotFoundMessage(null);
+      setX(e.clientX);
+      setY(e.clientY);
+    }
   }
 
   async function handleSubmit(e) {
@@ -129,7 +131,7 @@ function GameBoard() {
     <>
       {gameStarted && (
         <main onClick={handleClick}>
-          {clicked && (
+          {clicked && !winner && (
             <div className={styles.checkBox} style={{ left: x, top: y }}></div>
           )}
           <div className={styles.container}>
