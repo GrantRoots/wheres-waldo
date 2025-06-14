@@ -66,8 +66,9 @@ main {
 }
 
 .form {
+  text-align: center;
   position: absolute;
-  top: 50%;
+  top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 10%;
@@ -79,4 +80,13 @@ main {
     rgba(255, 0, 0, 1) 100%
   );
   outline: 2px solid black;
+}
+
+.form button {
+  background-color: white;
+  margin: 1rem;
+  border: none;
+  outline: 1px solid;
+  border-radius: 1rem;
+  padding: 0.3rem;
 }

@@ -35,6 +35,8 @@ function GameBoard() {
   const odlawRef = useRef(null);
   const woofRef = useRef(null);
 
+  const API_URL = import.meta.env.VITE_API_URL;
+
   useEffect(() => {
     if (gameStarted) getAndPostCoordinates();
   }, [gameStarted]);
@@ -80,7 +82,7 @@ function GameBoard() {
     };
 
     try {
-      const response = await fetch("http://localhost:3000/", {
+      const response = await fetch(`${API_URL}/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -111,7 +113,7 @@ function GameBoard() {
     const data = Object.fromEntries(formData.entries());
 
     try {
-      const response = await fetch("http://localhost:3000/check/win", {
+      const response = await fetch(`${API_URL}/check/win`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

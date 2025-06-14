@@ -6,21 +6,41 @@
   height: 20vh;
 }
 
+.footer button {
+  border-radius: 2rem;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  border: 1.5px solid black;
+  background-color: white;
+}
+
 .time {
   position: absolute;
   left: 3rem;
 }
 
-.rules {
+.rulesButton {
   position: absolute;
   right: 3rem;
 }
 
-.button {
+.rules {
+  position: absolute;
+  background-color: rgb(255, 0, 0);
+  top: 45%;
+  left: 50%;
+  padding: 3rem;
+  transform: translate(-50%, -50%);
+  outline: 3px solid;
+
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.startSubmit {
   font-size: 2rem;
 }
 
 .notFound {
   position: absolute;
-  bottom: 13%;
+  bottom: 14%;
 }
