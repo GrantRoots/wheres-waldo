@@ -28,9 +28,9 @@ Backend hosted on Koyeb
 
 - Open new terminal window for the frontend
 
-6. `cd wheres-waldo/frontend`
-7. `npm install`
-8. `npm run dev`
+1. `cd wheres-waldo/frontend`
+2. `npm install`
+3. `npm run dev`
 
 ## Environment Variables
 
