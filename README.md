@@ -4,7 +4,7 @@ My recreation of the game Where's Waldo. Find all 5 characters to win! Built wit
 
 ## Live
 
-https://odinsta-gram.netlify.app
+https://whereswaldo-app.netlify.app
 
 Frontend deployed on Netlify  
 Backend hosted on Koyeb
@@ -24,7 +24,7 @@ Backend hosted on Koyeb
 2. `cd wheres-waldo/api`
 3. `npm install`
 4. `npm run build`
-5. `node app.js`
+5. `npm run start`
 
 - Open new terminal window for the frontend
 
